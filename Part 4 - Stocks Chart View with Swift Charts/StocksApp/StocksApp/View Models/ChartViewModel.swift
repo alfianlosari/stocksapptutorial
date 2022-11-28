@@ -167,7 +167,6 @@ class ChartViewModel: ObservableObject {
                 highest = prevClose
             }
         }
-        
         // 2
         let diff = highest - lowest
         
@@ -176,7 +175,7 @@ class ChartViewModel: ObservableObject {
         let shouldCeilIncrement: Bool
         let strideBy: Double
         
-        if diff < (numberOfLines) {
+        if diff < (numberOfLines * 2) {
             // 4A
             shouldCeilIncrement = false
             strideBy = 0.01
@@ -198,13 +197,12 @@ class ChartViewModel: ObservableObject {
             current += increment
             map[(shouldCeilIncrement ? ceil(current) : current).roundedString] = formatYAxisValueLabel(value: current, shouldCeilIncrement: shouldCeilIncrement)
         }
-               
+                
         return ChartAxisData(
-            axisStart: lowest + 0.01,
+            axisStart: lowest - 0.01,
             axisEnd: highest + 0.01,
             strideBy: strideBy,
-            map: map
-        )
+            map: map)
     }
     
     private func formatYAxisValueLabel(value: Double, shouldCeilIncrement: Bool) -> String {
