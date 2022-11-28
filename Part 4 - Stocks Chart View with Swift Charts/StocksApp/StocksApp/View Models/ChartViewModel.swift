@@ -148,7 +148,7 @@ class ChartViewModel: ObservableObject {
         
         let xAxisData = ChartAxisData(
             axisStart: 0,
-            axisEnd: Double(axisEnd),
+            axisEnd: Double(max(0, axisEnd)),
             strideBy: 1,
             map: map)
         
