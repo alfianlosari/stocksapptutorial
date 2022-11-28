@@ -47,6 +47,7 @@ struct MainListView: View {
             }
             .onDelete { appVM.removeTickers(atOffsets: $0) }
         }
+        .opacity(searchVM.isSearching ? 0 : 1)
     }
     
     @ViewBuilder
